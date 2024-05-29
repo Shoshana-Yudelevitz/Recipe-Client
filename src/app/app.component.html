@@ -1,0 +1,14 @@
+
+<nav>
+    <ul>
+        
+        <a routerLink="login">login</a>
+          <a>---</a>
+         @if(userService.token){
+            <a routerLink="home">home</a>
+         }
+         <a>---</a>
+         <a routerLink="signUp">signUp</a> 
+    </ul>
+</nav>
+<router-outlet (activate)="onActivate($event)"></router-outlet>

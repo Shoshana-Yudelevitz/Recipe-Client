@@ -1,0 +1,13 @@
+
+<mat-form-field>
+  <mat-label>בחר קטגוריה</mat-label>
+  <mat-select>
+    @for (c of category; track c){
+      <mat-option [value]="c.description" (click)="findCategory(c.description)">{{c.description}}</mat-option>}
+  </mat-select>
+</mat-form-field>
+
+
+@for(c of list; track c._id){
+    <app-one-recipe [oneItem]="c"></app-one-recipe>
+}

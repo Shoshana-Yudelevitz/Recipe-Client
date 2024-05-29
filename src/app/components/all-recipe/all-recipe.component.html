@@ -3,7 +3,7 @@
   <mat-label>בחר קטגוריה</mat-label>
   <mat-select>
     @for (c of category; track c){
-      <mat-option [value]="c.description" (click)="findCategory(c.description)">{{c.description}}</mat-option>}
+      <mat-option [value]="c.description" >{{c.description}}</mat-option>}
   </mat-select>
 </mat-form-field>
 

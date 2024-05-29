@@ -24,6 +24,7 @@ export class AllRecipeComponent {
   @Input()
   list: any[] = [];
   category: Category[] = [];
+  recipesOfCategory: any[] = [];
 
   ngOnInit(): void {
 
@@ -38,12 +39,10 @@ export class AllRecipeComponent {
     
 }
 
-findCategory(descripition:string| undefined){
-    this.categoryService.getAllCategoryByRecipes(descripition).subscribe((data) => {
-    this.category = data as any[];
-    console.log(data,"מתכונים ");
-    });
+findCategory(category: string) {
+  this.categoryService.getAllCategoryByRecipes(category).subscribe((data) => {
+  this.recipesOfCategory = data as any[];
+  console.log(data);
+  })
 }
-
-
 }

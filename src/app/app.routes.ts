@@ -13,4 +13,5 @@ export const routes: Routes = [
     {path:'all-recipe',component:AllRecipeComponent},
     {path:'recipe-form',component:RecipeFormComponent},
     {path:'one-recipe',component:OneRecipeComponent},
+    // {path:'recipe-form',component:RecipeFormComponent},
 ];

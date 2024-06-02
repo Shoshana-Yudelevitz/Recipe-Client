@@ -35,22 +35,30 @@ export class RegisterComponent {
       .subscribe(() => this.updateErrorMessage());
   }
 
-updateErrorMessage() {
-  if (this.email.hasError('required')) {
-    this.errorMessage = 'שדה חובה';
-  } else if (this.email.hasError('email')) {
-    this.errorMessage = 'המייל  שגוי';
-  } else {
-    this.errorMessage = '';
-  }
+  updateErrorMessage() {
+    if (this.email.hasError('required')) {
+      this.errorMessage = 'שדה חובה';
+    } else if (this.email.hasError('email')) {
+      this.errorMessage = 'המייל  שגוי';
+    } else {
+      this.errorMessage = '';
+    }
 
-}
-enter(form:NgForm){
-this.userService.signUp({userName:form.value.userName,password:form.value.password,email:form.value.email,address:form.value.address,role:'user'}).
-subscribe((data)=>{
-  console.log(data);
-  this.userService.token=data.token
-  this.router.navigate(['/all-recipe']); 
-})
-}
+  }
+  enter(form: NgForm) {
+    this.userService.signUp({ userName: form.value.userName, password: form.value.password, email: form.value.email, address: form.value.address, role: 'user' }).
+      subscribe({
+        next: (data) => {
+          console.log(data);
+          this.userService.token = data.token
+          this.router.navigate(['/all-recipe']);
+        },
+        error: (err) => {
+          console.error('SignUp error', err);
+          // Handle the error appropriately
+          this.errorMessage = 'המשתמש כבר קיים במערכת ';
+        }
+      },
+      )
+  }
 }

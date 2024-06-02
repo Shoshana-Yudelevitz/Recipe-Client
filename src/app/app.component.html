@@ -1,10 +1,9 @@
 
 <nav>
     <ul>
-        
+        @if(userService.token){
         <a routerLink="login">login</a>
           <a>---</a>
-         @if(userService.token){
             <a routerLink="home">home</a>
          }
          <a>---</a>

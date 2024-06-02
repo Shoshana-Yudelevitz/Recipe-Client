@@ -1,1 +1,67 @@
 <p>recipe-form works!</p>
+<form [formGroup]="recipeForm" class="example-form" (ngSubmit)="addRecipe()" >
+ 
+    <mat-form-field class="example-full-width">
+      <mat-label>שם המתכון</mat-label>
+      <input matInput placeholder="שם המתכון" type="text" formControlName="recipeName" >
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>תאור המתכון</mat-label>
+      <textarea matInput placeholder="תאור" type="text" formControlName="descripition"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>הוספת קטגוריה חדשה</mat-label>
+      <input matInput  formArrayName="categories" >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>קטגוריות</mat-label>
+      <mat-select formArrayName="categories" multiple>
+        <mat-option *ngFor="let c of category" [value]="c.description">{{c.description}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field floatLabel="always">
+      <mat-label>משך זמן ההכנה</mat-label>
+      <input matInput type="number" class="example-right-align" placeholder="0" formControlName="time">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>בחירת רמת קושי</mat-label>
+      <mat-select matNativeControl required formControlName="level">
+        <mat-option [value]="1">1</mat-option>
+        <mat-option [value]="2">2</mat-option>
+        <mat-option [value]="3">3</mat-option>
+        <mat-option [value]="4">4</mat-option>
+        <mat-option [value]="5">5</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>הוראות הכנה</mat-label>
+      <textarea matInput placeholder="הוראות הכנה" type="text" formControlName="instructions"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>שם רכיב </mat-label>
+
+      <input matInput placeholder="שם רכיב" formControlName="ingredients">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>תאור שכבה</mat-label>
+      <textarea matInput placeholder="תאור שכבה" type="text" formControlName="descripitionOfLayer"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>תמונה</mat-label>
+      <input matInput placeholder="תמונה" type="text" formControlName="image"/>
+    </mat-form-field>
+    <section class="example-section">
+      <mat-checkbox class="example-margin" formControlName="isPrivate">האם אתה רוצה שהמתכון יהיה פרטי</mat-checkbox>
+    </section>
+    <button mat-button color="primary" >הוספה</button>
+</form>

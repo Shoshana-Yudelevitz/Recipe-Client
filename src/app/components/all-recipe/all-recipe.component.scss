@@ -4,3 +4,56 @@
     padding: 10px; /* מרווח פנימי בתוך המסגרת */
     margin: 5px; /* מרווח בין מסגרות */
   }
+  section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    max-width: 600px;
+  }
+  
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+  .recipes-section {
+    padding: 20px;
+  }
+  
+  .recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust the minmax values as needed */
+    gap: 20px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .recipes-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust for smaller screens */
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .recipes-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust for even smaller screens */
+    }
+  }
+  

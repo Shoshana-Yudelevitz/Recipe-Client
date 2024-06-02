@@ -1,13 +1,14 @@
 export interface Recipe {
+         id?:number,
          recipeName?:string,
          descripition?:string,
-         categories?:{id:number,categoryName:string},
+         categories?:[{categoryName:string}],
          time?:number,
          level?:number,
          dateAdd?:Date,
-         layers?:{descripitionOfLayer:string,ingredients:[string]},
+         layers?:[{descripitionOfLayer:string,ingredients:[string]}],
          instructions?:string,
          image?:string,
          isPrivate?:boolean,
-         userRecipe?:{id:number,UserName:string}
+         userRecipe?:{id?:string,UserName:string}
 }

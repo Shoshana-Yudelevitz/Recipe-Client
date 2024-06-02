@@ -1,13 +1,50 @@
 
-<mat-form-field>
-  <mat-label>בחר קטגוריה</mat-label>
-  <mat-select>
-    @for (c of category; track c){
-      <mat-option [value]="c.description" >{{c.description}}</mat-option>}
-  </mat-select>
-</mat-form-field>
+<section class="recipes-section">
+  <div class="example-button-row">
+    <button mat-button color="primary" (click)="findAll()">בטל את כל הסינונים</button>
+  </div>
 
+  <mat-form-field>
+    <mat-label>סנן לפי קטגוריה</mat-label>
+    <mat-select>
+      @for (c of category; track c){
+      <mat-option [value]="c.description" (click)="findCategory(getStringValue(c.description))">{{c.description}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 
-@for(c of list; track c._id){
-    <app-one-recipe [oneItem]="c"></app-one-recipe>
-}
+  <mat-form-field>
+    <mat-label>סנן לפי רמת קושי</mat-label>
+    <mat-select>
+      <mat-option [value]="1" (click)="findLevel(1)">1</mat-option>
+      <mat-option [value]="2" (click)="findLevel(2)">2</mat-option>
+      <mat-option [value]="3" (click)="findLevel(3)">3</mat-option>
+      <mat-option [value]="4" (click)="findLevel(4)">4</mat-option>
+      <mat-option [value]="5" (click)="findLevel(5)">5</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>סנן לפי זמן</mat-label>
+    <mat-select>
+      <mat-option [value]="15" (click)="findByTime(15)">עד רבע שעה</mat-option>
+      <mat-option [value]="30" (click)="findByTime(30)">עד חצי שעה</mat-option>
+      <mat-option [value]="60" (click)="findByTime(60)">עד שעה</mat-option>
+      <mat-option [value]="90" (click)="findByTime(90)">עד שעה וחצי</mat-option>
+      <mat-option [value]="120" (click)="findByTime(120)">עד שעתיים</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="recipes-grid">
+    @for(c of list; track c._id){
+      <app-one-recipe [oneItem]="c"></app-one-recipe>
+    }
+  </div>
+
+  <mat-paginator 
+  [length]="100" 
+  [pageSize]="20" 
+  aria-label="Select page"
+  (page)="onPageChange($event)"
+  ></mat-paginator>
+</section>

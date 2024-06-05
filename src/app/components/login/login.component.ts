@@ -61,6 +61,7 @@ signIn(form: NgForm) {
   this.userService
     .signIn({ password: form.value.password, email: form.value.email }).
     subscribe((data) => {
+      // localStorage.setItem('myToken', data.token);
       console.log(data);
       console.log("התחברת בהצלחה:)");
       this.userService.token = data.token

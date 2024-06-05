@@ -11,7 +11,9 @@ export class RecipeService {
 
 
   public get token(): string | null {
-    return localStorage.getItem('myToken');
+    if(localStorage)
+    return localStorage.getItem('mytoken');
+  return null;
   }
 
   getAllRecipe(page: number = 1, perPage: number = 20): Observable<Recipe[]> {
@@ -21,15 +23,14 @@ export class RecipeService {
   getDetailsById(id:number){
     return this.http.get<Recipe>(`${this.baseUrl}/${id}`);
   }
+  
   addRecipe(r: Recipe){
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Authorization': `Bearer ${this.token}`
-    //   })
-    // };
-    // console.log(httpOptions,"httpOptions");
-
-    return this.http.post<Recipe>(`${this.baseUrl}/addRecipe`,r);
+      const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`
+      })
+    };
+    return this.http.post<Recipe>(`${this.baseUrl}/addRecipe`,r,httpOptions);
   }
   updateRecipe(id: number){
     // return this.http.put<Recipe>(`${this.baseUrl}/${id}`);

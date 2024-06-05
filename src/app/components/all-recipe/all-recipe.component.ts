@@ -28,7 +28,7 @@ export class AllRecipeComponent {
   private recipeService=inject(RecipeService)
   private categoryService=inject(CategoryService)
   currentPage: number = 1; // הוספת משתנה זה
-  pageSize: number = 5;
+  pageSize: number =15 ;
   constructor(private server: RecipeService ,private router:Router ) {}
   @Input()
   list: any[] = [];

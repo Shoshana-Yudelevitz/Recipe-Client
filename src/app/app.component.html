@@ -1,13 +1,16 @@
-
 <nav>
-    <ul>
-        @if(userService.token){
-        <a routerLink="login">login</a>
-          <a>---</a>
-            <a routerLink="home">home</a>
-         }
-         <a>---</a>
-         <a routerLink="signUp">signUp</a> 
-    </ul>
+  <ul>
+    <a routerLink="login">login</a>
+    <a>---</a>
+    <a routerLink="home">home</a>
+
+
+    @if(userService.token){
+    <a>---</a>
+    <a routerLink="signUp">signUp</a>
+    }
+
+
+  </ul>
 </nav>
 <router-outlet (activate)="onActivate($event)"></router-outlet>

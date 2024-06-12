@@ -1,51 +1,59 @@
+body {
+  direction: rtl;
+}
+
 .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
-  .example-container mat-form-field + mat-form-field {
-    margin-left: 8px;
-  }
-  
-  .example-right-align {
-    text-align: right;
-  }
-  
-  input.example-right-align::-webkit-outer-spin-button,
-  input.example-right-align::-webkit-inner-spin-button {
-    display: none;
-  }
-  
-  input.example-right-align {
-    -moz-appearance: textfield;
-  }
-  .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
-  .example-section {
-    margin: 12px 0;
-  }
-  
-  .example-margin {
-    margin: 0 12px;
-  }
-  
-  ul {
-    list-style-type: none;
-    margin-top: 4px;
-  }
-  .example-additional-selection {
-    opacity: 0.75;
-    font-size: 0.75em;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 500px;
+  width: 100%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.example-full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.example-form mat-form-field {
+  width: 100%;
+}
+
+.example-form button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.example-form .example-section {
+  margin: 12px 0;
+}
+
+.example-form .example-margin {
+  margin: 0 12px;
+}
+
+.example-form input[type="text"],
+.example-form input[type="password"],
+.example-form textarea,
+.example-form select {
+  text-align: right;
+}
+
+.example-form mat-form-field {
+  text-align: right;
+}
+
+.mat-form-field-label {
+  direction: rtl;
+}
+
+.mat-error {
+  text-align: right;
+}
+
+

@@ -9,8 +9,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserService } from '../../shared/services/user.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { User } from '../../shared/models/user';
+
 
 @Component({
   selector: 'app-login',
@@ -48,14 +49,21 @@ updateErrorMessage() {
   }
 
 }
-@Output()
-moveTo: EventEmitter<{email:string,password:string}>= new EventEmitter<{email:string,password:string}>();
+
 
 move(form: NgForm){
-  this.moveTo.emit({email:form.value.email,password:form.value.password})
-  this.router.navigate(['/signUp']);
+
+  console.log("here");
+  const email = form.value.email;
+  const password = form.value.password;
+  const navigationExtras: NavigationExtras = {
+    state: { email, password }
+  };
+    this.router.navigate(['/signUp'], navigationExtras);
+    console.log(navigationExtras);
 }
-signIn(form: NgForm) {
+
+signIn(form: NgForm){
   console.log(form.value.password);
   console.log(form.value.email);
   this.userService

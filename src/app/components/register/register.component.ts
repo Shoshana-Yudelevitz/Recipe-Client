@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EventEmitter, Output, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, Validators, FormsModule, ReactiveFormsModule, NgForm, NgModel } from '@angular/forms';
@@ -19,21 +19,38 @@ import { User } from '../../shared/models/user';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
 
   private userService = inject(UserService)
-  @Input()
-  userData: { email: string; password: string } | null = null;
+  // @Input()
+  // userData: { email: string; password: string } | null = null;
   email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('',[
+    Validators.required,
+    Validators.minLength(4),
+    Validators.maxLength(10),
+    Validators.pattern('^(?=.*[A-z])(?=.*[0-9])')
+  ]);
   loginError?: string;
   errorMessage = '';
   errorUser = '';
   hide = true;
+  state = { email: '' , password: ''};
   constructor(private server: UserService, private router: Router) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
   }
+  ngOnInit() {
+
+    const state = history.state as { email: string; password: string };
+
+
+  if (state) {
+
+    this.state.email = state.email;
+    this.state.password = state.password; 
+  }}
 
   updateErrorMessage() {
     if (this.email.hasError('required')) {
@@ -55,7 +72,6 @@ export class RegisterComponent {
         },
         error: (err) => {
           console.error('SignUp error', err);
-          // Handle the error appropriately
           this.errorMessage = 'המשתמש כבר קיים במערכת ';
         }
       },

@@ -1,16 +1,24 @@
-<nav>
-  <ul>
-    <a routerLink="login">login</a>
-    <a>---</a>
-    <a routerLink="home">home</a>
 
+<div class="sticky-navbar">
+ 
+  <mat-tab-group animationDuration="1000ms" (selectedIndexChange)="onTabChange($event)">
+    <ng-container *ngIf="isUserLoggedIn()">
+      <mat-tab label="התחברות"></mat-tab>
+      <mat-tab label="הרשמה"></mat-tab>
+      <mat-tab label="הבית"></mat-tab>
+      <mat-tab label="כל המתכונים"></mat-tab>
+      <mat-tab label="הוספת מתכון"></mat-tab>
+      <mat-tab label="המתכונים שלי"></mat-tab>
+      <mat-tab label="יציאה" >
+      <button mat-button color="primary" (click)="logout()">אתה בטוח רוצה לצאת? אם כן הקש כאן!</button>
+    </mat-tab>
+    </ng-container>
+    <ng-container *ngIf="!isUserLoggedIn()">
+      <mat-tab label="התחברות"></mat-tab>
+      <mat-tab label="הרשמה"></mat-tab>
+      <mat-tab label="הבית"></mat-tab>
+      <mat-tab label="כל המתכונים"></mat-tab>
+    </ng-container>
+  </mat-tab-group>
 
-    @if(userService.token){
-    <a>---</a>
-    <a routerLink="signUp">signUp</a>
-    }
-
-
-  </ul>
-</nav>
 <router-outlet (activate)="onActivate($event)"></router-outlet>

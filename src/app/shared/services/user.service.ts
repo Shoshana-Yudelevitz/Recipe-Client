@@ -12,18 +12,30 @@ export class UserService {
 
 
   current?:User 
-  
+
+ 
   public get token():string|null{
+    
     return localStorage.getItem('mytoken')
   }
-  public set token(token:string|null){
-    if(token)
-      localStorage.setItem('mytoken',token)
+  public set token(token: string | null) {
+    if (token) {
+      localStorage.setItem('mytoken', token);
+    } else {
+
+      localStorage.removeItem('mytoken');
+    }
   }
   getAllUsers(){
     return this.http.get<User[]>(this.usersUrl)
   }
-
+  logout() {
+    console.log("logout 2");
+   
+    localStorage.clear();
+    window.location.reload();
+    
+  }
   signIn(u: User){  
     return this.http.post<{user:User;token:string}>(`${this.usersUrl}/signIn`,u)
   }

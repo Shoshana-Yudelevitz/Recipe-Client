@@ -1,0 +1,54 @@
+
+<div style="text-align: center; margin-top: 20px;">
+  <mat-card class="example-card">
+    <div class="example-header-image"></div>
+    <h1 class="center-title">{{ foundRecipe.recipeName }}</h1>
+    <mat-card-content class="card-section">
+      <mat-card-title class="card-subtitle">{{ foundRecipe.descripition }}</mat-card-title>
+      <div class="card-section">
+
+        <mat-card-title class="card-subtitle">
+          :רמה
+          <div [appStarDirective]="foundRecipe.level"></div>
+
+        </mat-card-title>
+
+
+        <mat-card-title class="card-subtitle">{{foundRecipe.time | pipeTime}}</mat-card-title>
+
+        <mat-card-title class="card-subtitle">{{ foundRecipe.instructions }}</mat-card-title>
+      </div>
+
+      <div *ngIf="foundRecipe.layers?.length" class="card-section">
+        <h2 class="card-subtitle">:שכבות</h2>
+        <div *ngFor="let layer of foundRecipe.layers">
+          <mat-card-subtitle class="card-subtitle">{{ layer.descripitionOfLayer }} </mat-card-subtitle>
+          <mat-card-subtitle class="card-subtitle">:מצרכים </mat-card-subtitle>
+          <ul class="card-list">
+            <li class="card-list-item" *ngFor="let ingredient of layer.ingredients">{{ ingredient }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <mat-card-title class="card-date">{{ getFormattedDate(foundRecipe.dateAdd) }}:תאריך </mat-card-title>
+    </mat-card-content>
+
+
+
+  <mat-card-actions>
+      <mat-card-title class="card-author">{{ user[0]?.UserName }}:הועלה על ידי </mat-card-title>
+      <div class="example-flex-container">
+        <div class="example-button-container">
+          <button *ngIf="isOwner" (click)="editRecipe()" mat-icon-button color="primary" matTooltip="עריכה" aria-label="Edit recipe">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button *ngIf="isOwner" (click)="deleteRecipe(foundRecipe._id)" mat-icon-button color="primary" matTooltip="מחיקה" aria-label="Delete recipe">
+            <mat-icon>delete</mat-icon>
+          </button>
+         
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

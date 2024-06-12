@@ -150,6 +150,14 @@
 //   })
 // }
 // }
+
+
+
+
+
+
+
+
 import { Component, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -187,6 +195,7 @@ import { Router } from '@angular/router';
     MatIconModule,
     MatDividerModule,
     MatSnackBarModule,
+    
   ],
   templateUrl: './recipe-form.component.html',
   styleUrls: ['./recipe-form.component.scss']
@@ -221,7 +230,7 @@ export class RecipeFormComponent implements OnInit {
       recipeName: fb.control('', [Validators.required, Validators.maxLength(20), Validators.minLength(3), Validators.pattern('^[a-zA-Zא-ת]*$')]),
       descripition: fb.control('', [Validators.required, Validators.minLength(5), Validators.maxLength(100), Validators.pattern('^[a-zA-Zא-ת]*$')]),
       categories: fb.control('', Validators.required),
-      newCategories: fb.control(''),
+      newCategories: fb.control('',[Validators.pattern('^[a-zA-Zא-ת]*$'),Validators.minLength(2), Validators.maxLength(10), ]),
       time: fb.control('', [Validators.required, Validators.pattern('^[0-9]*$')]),
       level: fb.control(0, Validators.required),
       layers: fb.array([]),
@@ -306,7 +315,7 @@ export class RecipeFormComponent implements OnInit {
       error: (err) => {
         console.error('error', err);
         this.errorMessage = 'המתכון שגוי ';
-        this.openSnackBar('שגיאה', 'סגור');
+        this.openSnackBar('לא הקשת את כל הפרטים או שאחד מהנתונים שגוי', 'סגור');
       }
     });
   }

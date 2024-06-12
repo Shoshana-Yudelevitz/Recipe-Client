@@ -1,80 +1,102 @@
-<p>recipe-form works!</p>
 
-<form [formGroup]="recipeForm" class="example-form" (ngSubmit)="addRecipe()" >
- 
-    <mat-form-field class="example-full-width">
-      <mat-label>שם המתכון</mat-label>
-      <input matInput placeholder="שם המתכון" type="text" formControlName="recipeName" >
-    </mat-form-field>
+<form [formGroup]="recipeForm" class="example-form" (ngSubmit)="addRecipe()">
 
-    <mat-form-field class="example-full-width">
-      <mat-label>תאור המתכון</mat-label>
-      <textarea matInput placeholder="תאור" type="text" formControlName="descripition"></textarea>
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>שם המתכון</mat-label>
+    <input pattern="^[a-zA-Zא-ת\s]+$" minlength="3" maxlength="20" matInput placeholder="שם המתכון" type="text" formControlName="recipeName">
+    <mat-error *ngIf="recipeForm.get('recipeName')?.hasError('minlength')">שם חייב להכיל לפחות 3 תווים </mat-error>
+    <mat-error *ngIf="recipeForm.get('recipeName')?.hasError('maxlength')">שם יכול להכיל עד 20 תווים </mat-error>
+    <mat-error *ngIf="recipeForm.get('recipeName')?.hasError('required')">שדה חובה</mat-error>
+    <mat-error *ngIf="recipeForm.get('recipeName')?.hasError('pattern')">שם יכול להכיל אותיות בלבד</mat-error>
+  </mat-form-field>
 
-    
-    <mat-form-field class="example-full-width">
-      <mat-label>הוספת קטגוריה חדשה</mat-label>
-      <input matInput  formControlName="newCategories" >
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>תיאור המתכון</mat-label>
+    <textarea pattern="^[a-zA-Zא-ת\s]+$" minlength="5" maxlength="100" matInput placeholder="תיאור" type="text" formControlName="descripition"></textarea>
+    <mat-error *ngIf="recipeForm.get('descripition')?.hasError('minlength')">תאור חייב להכיל לפחות 5 תווים </mat-error>
+    <mat-error *ngIf="recipeForm.get('descripition')?.hasError('maxlength')">תאור יכול להכיל עד 100 תווים </mat-error>
+    <mat-error *ngIf="recipeForm.get('descripition')?.hasError('required')">שדה חובה</mat-error>
+    <mat-error *ngIf="recipeForm.get('descripition')?.hasError('pattern')">תאור יכול להכיל אותיות בלבד</mat-error>
+  </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>קטגוריות</mat-label>
-      <mat-select formControlName="categories" multiple>
-        <mat-option *ngFor="let c of category" [value]="c.description">{{c.description}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-   
+  <mat-form-field class="example-full-width">
+    <mat-label>הוספת קטגוריה חדשה</mat-label>
+    <input pattern="^[a-zA-Zא-ת\s]+$" minlength="2" maxlength="10" matInput formControlName="newCategories">
+    <mat-error *ngIf="recipeForm.get('newCategories')?.hasError('minlength')">קטגוריה חייב להכיל לפחות 2 תווים </mat-error>
+    <mat-error *ngIf="recipeForm.get('newCategories')?.hasError('maxlength')">קטגוריה יכול להכיל עד 10 תווים </mat-error>
+    <mat-error *ngIf="recipeForm.get('newCategories')?.hasError('pattern')">קטגוריה יכול להכיל אותיות בלבד</mat-error>
+  </mat-form-field>
 
-    <mat-form-field floatLabel="always">
-      <mat-label>משך זמן ההכנה</mat-label>
-      <input matInput type="number" class="example-right-align" placeholder="0" formControlName="time">
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>קטגוריות</mat-label>
+    <mat-select formControlName="categories" multiple>
+      <mat-option *ngFor="let c of category" [value]="c.description">{{c.description}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>בחירת רמת קושי</mat-label>
-      <mat-select matNativeControl required formControlName="level">
-        <mat-option [value]="1">1</mat-option>
-        <mat-option [value]="2">2</mat-option>
-        <mat-option [value]="3">3</mat-option>
-        <mat-option [value]="4">4</mat-option>
-        <mat-option [value]="5">5</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>משך זמן ההכנה</mat-label>
+    <input matInput type="number" class="example-right-align" placeholder="0" formControlName="time">
+  </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>הוראות הכנה</mat-label>
-      <textarea matInput placeholder="הוראות הכנה" type="text" formControlName="instructions"></textarea>
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>בחירת רמת קושי</mat-label>
+    <mat-select matNativeControl required formControlName="level">
+      <mat-option [value]="1">1</mat-option>
+      <mat-option [value]="2">2</mat-option>
+      <mat-option [value]="3">3</mat-option>
+      <mat-option [value]="4">4</mat-option>
+      <mat-option [value]="5">5</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>הוראות הכנה</mat-label>
+    <textarea pattern="^[a-zA-Zא-ת\s]+$" minlength="10" maxlength="1000" matInput placeholder="הוראות הכנה" type="text" formControlName="instructions"></textarea>
+    <mat-error *ngIf="recipeForm.get('instructions')?.hasError('minlength')">הוראות הכנה חייב להכיל לפחות 10 תווים </mat-error>
+    <mat-error *ngIf="recipeForm.get('instructions')?.hasError('maxlength')">הוראות הכנה יכול להכיל עד 1000 תווים </mat-error>
+    <mat-error *ngIf="recipeForm.get('instructions')?.hasError('required')">שדה חובה</mat-error>
+    <mat-error *ngIf="recipeForm.get('instructions')?.hasError('pattern')">הוראות הכנה יכול להכיל אותיות בלבד</mat-error>
+  </mat-form-field>
 
   <div formArrayName="layers">
-    <p> :שלבי הכנה</p>
+    <p>:שלבי הכנה</p>
     <div *ngFor="let layer of layers.controls; let layerIndex = index" [formGroupName]="layerIndex">
-        <div>
-            <mat-form-field>
-                <mat-label>תיאור שכבה</mat-label>
-                <input formControlName="descripitionOfLayer" type="text" matInput>
-            </mat-form-field>
-        </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>תיאור שכבה</mat-label>
+          <input pattern="^[a-zA-Zא-ת\s]+$" minlength="2" maxlength="30" formControlName="descripitionOfLayer" type="text" matInput>
+          <mat-error *ngIf="recipeForm.get('descripitionOfLayer')?.hasError('minlength')">שכבה חייב להכיל לפחות 2 תווים </mat-error>
+          <mat-error *ngIf="recipeForm.get('descripitionOfLayer')?.hasError('maxlength')">שכבה יכול להכיל עד 30 תווים </mat-error>
+          <mat-error *ngIf="recipeForm.get('descripitionOfLayer')?.hasError('required')">שדה חובה</mat-error>
+          <mat-error *ngIf="recipeForm.get('descripitionOfLayer')?.hasError('pattern')">שכבה יכול להכיל אותיות בלבד</mat-error>
+        </mat-form-field>
+      </div>
 
-        <div formArrayName="ingredients">
-            <div *ngFor="let ingredient of getIngredients(layerIndex).controls; let ingredientIndex = index">
-                <mat-form-field>
-                    <mat-label>הוסף מוצר</mat-label>
-                    <input matInput (blur)="addingredient(layerIndex)" [formControlName]="ingredientIndex">
-                </mat-form-field>
-            </div>
+      <div formArrayName="ingredients">
+        <div *ngFor="let ingredient of getIngredients(layerIndex).controls; let ingredientIndex = index">
+          <mat-form-field class="example-full-width">
+            <mat-label>הוסף מוצר</mat-label>
+            <input pattern="^[a-zA-Zא-ת\s]+$" minlength="2" maxlength="15" matInput (blur)="addingredient(layerIndex)" [formControlName]="ingredientIndex">
+            <mat-error *ngIf="recipeForm.get('ingredientIndex')?.hasError('minlength')">מוצר חייב להכיל לפחות 2 תווים </mat-error>
+            <mat-error *ngIf="recipeForm.get('ingredientIndex')?.hasError('maxlength')">מוצר יכול להכיל עד 15 תווים </mat-error>
+            <mat-error *ngIf="recipeForm.get('ingredientIndex')?.hasError('required')">שדה חובה</mat-error>
+            <mat-error *ngIf="recipeForm.get('ingredientIndex')?.hasError('pattern')">מוצר יכול להכיל אותיות בלבד</mat-error>
+          </mat-form-field>
         </div>
+      </div>
     </div>
-    <button type="button" (click)="addLayer()" mat-flat-button color="primary">שכבה נוספת </button>
-</div>
+    <button type="button" (click)="addLayer()" mat-flat-button color="primary">שכבה נוספת</button>
+  </div>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>תמונה</mat-label>
-      <input matInput placeholder="תמונה" type="text" formControlName="image"/>
-    </mat-form-field>
-    <section class="example-full-width">
-      <mat-checkbox class="example-margin" formControlName="isPrivate">האם אתה רוצה שהמתכון יהיה פרטי</mat-checkbox>
-    </section>
-    <button mat-button color="primary" >הוספה</button>
+  <mat-form-field class="example-full-width">
+    <mat-label>תמונה</mat-label>
+    <input matInput placeholder="תמונה" type="text" formControlName="image">
+  </mat-form-field>
+
+  <section class="example-full-width">
+    <mat-checkbox formControlName="isPrivate">האם אתה רוצה שהמתכון יהיה פרטי</mat-checkbox>
+  </section>
+
+  <button mat-button color="primary">הוספה</button>
 </form>

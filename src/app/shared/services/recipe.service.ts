@@ -2,12 +2,16 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Recipe } from '../models/recipe';
 import { Observable } from 'rxjs';
+import { log } from 'console';
+import { UserService } from './user.service';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
   private baseUrl='http://localhost:5000/recipes'
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private userService:UserService) { }
 
 
   public get token(): string | null {
@@ -20,7 +24,7 @@ export class RecipeService {
     const url = `${this.baseUrl}?page=${page}&perPage=${perPage}`;
     return this.http.get<Recipe[]>(url);
   }
-  getDetailsById(id:number){
+  getDetailsById(id:number|undefined){
     return this.http.get<Recipe>(`${this.baseUrl}/${id}`);
   }
   
@@ -35,8 +39,15 @@ export class RecipeService {
   updateRecipe(id: number){
     // return this.http.put<Recipe>(`${this.baseUrl}/${id}`);
   }
-  deleteRecipe(id:number){
-    return this.http.delete<Recipe>(`${this.baseUrl}/${id}`);
+  deleteRecipe(id:number|string|undefined){
+    console.log(id,"deleteRecipe");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`
+      })
+    };
+    
+    return this.http.delete<Recipe>(`${this.baseUrl}/${id}`,httpOptions);
   }
   getDetailsByTime(time:number){
     return this.http.get<Recipe[]>(`${this.baseUrl}/getDetailsByTime/${time}`);
@@ -44,4 +55,6 @@ export class RecipeService {
   getDetailsByUser(u: number){
     return this.http.get<Recipe[]>(`${this.baseUrl}/getDetailsByUser/${u}`);
   }
+  
+  
 }

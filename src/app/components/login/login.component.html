@@ -1,48 +1,38 @@
-<form ngForm #myForm="ngForm" (ngSubmit)="signIn(myForm)" >
-<div #my>
-<div class="example-container">
-    <mat-form-field>
-      <mat-label>Enter your email</mat-label>
+<div class="login-container">
+  <form ngForm #myForm="ngForm" (ngSubmit)="signIn(myForm)">
+    <mat-form-field appearance="fill">
+      <mat-label>אימייל</mat-label>
       <input name="email"
-             type="text" 
+             type="text"
              ngModel
              #emailModel="ngModel"
              matInput
              placeholder="email@example.com"
-             (blur)="updateErrorMessage()"
-             required
-             >
-      @if (email.invalid) {
-        <mat-error>{{errorMessage}}</mat-error>
-      }
+             required>
+      <mat-error *ngIf="emailModel.invalid">אימייל לא תקין</mat-error>
     </mat-form-field>
-</div>
-<div class="example-container">
-    <mat-form-field>
-      <mat-label>Enter your password</mat-label>
-      <input type="password" 
+
+    <mat-form-field appearance="fill">
+      <mat-label>סיסמה</mat-label>
+      <input type="password"
              name="password"
              matInput
-             ngModel 
-             #passwordModel="ngModel" 
+             ngModel
+             #passwordModel="ngModel"
              [type]="hide ? 'password' : 'text'"
-             >
+             placeholder="סיסמה">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
     </mat-form-field>
-  </div>
-  <section>
-    <div class="example-button-row">
-      <button  mat-stroked-button  color="primary">כניסה</button>
-    </div>
-  </section>
-  <div *ngIf="errorUser">
-    <mat-error>{{ errorUser }}</mat-error>
-  </div>
-</div>
-</form> 
-<div>
-  <button mat-stroked-button (click)="move(myForm)" color="primary">הרשמה</button>
-</div>
 
+    <button mat-raised-button color="primary" type="submit">כניסה</button>
+    <div *ngIf="errorUser">
+      <mat-error>{{ errorUser }}</mat-error>
+    </div>
+  </form>
+
+  <div class="register-link">
+    <button mat-raised-button (click)="move(myForm)" color="accent">הרשמה</button>
+  </div>
+</div>

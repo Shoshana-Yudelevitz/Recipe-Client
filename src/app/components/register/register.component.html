@@ -1,94 +1,90 @@
-<p>register works!</p>
-<form ngForm #myForm="ngForm" (ngSubmit)="enter(myForm)">
-    <div #my>
+<div class="register-container">
+  <form ngForm #myForm="ngForm" (ngSubmit)="enter(myForm)">
     <div class="example-container">
-        <mat-form-field>
-          <mat-label>הקש מייל</mat-label>
-          <input name="email"
-                 type="text" 
-                 ngModel
-                 #emailModel="ngModel"
-                 matInput
-                 placeholder="email@example.com"
-                 required
-                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)$"
-                 >
-                 <mat-error *ngIf="emailModel.getError('required')"> שדה חובה</mat-error>
-                <mat-error *ngIf="emailModel.getError('pattern')">מייל לא תקין</mat-error>
-          <!-- @if (email.invalid) {
-            <mat-error>{{errorMessage}}</mat-error>
-          } -->
-        </mat-form-field>
-    </div>
-
-
-    <div class="example-container">
-        <mat-form-field>
-          <mat-label>הקש שם משתמש</mat-label>
-          <input name="userName"
-                 type="text" 
-                 ngModel
-                 #userNameModel="ngModel"
-                 matInput
-                 placeholder="name"
-                 required
-                 pattern="^[a-zA-Zא-ת\s]+$" minlength="2" maxlength="30"
-                 >
-                 <mat-error *ngIf="userNameModel.getError('minlength')">שם מכיל מינימום 2 תווים </mat-error>
-                 <mat-error *ngIf="userNameModel.getError('maxlength')">שם מכיל מקסימום 30 תווים </mat-error>
-                 <mat-error *ngIf="userNameModel.getError('required')"> שדה חובה</mat-error>
-                 <mat-error *ngIf="userNameModel.getError('pattern')">שם מכיל אותיות בלבד </mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>הקלד מייל</mat-label>
+        <input name="email"
+               type="text" 
+               ngModel
+               [(ngModel)]="state.email"
+               #emailModel="ngModel"
+               matInput
+               placeholder="email@example.com"
+               required
+               pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)$"
+               >
+        <mat-error *ngIf="emailModel.getError('required')">שדה חובה</mat-error>
+        <mat-error *ngIf="emailModel.getError('pattern')">מייל לא תקין</mat-error>
+      </mat-form-field>
     </div>
 
     <div class="example-container">
-        <mat-form-field>
-          <mat-label>הקש כתובת</mat-label>
-          <input name="address"
-                 type="text" 
-                 ngModel
-                 #addressModel="ngModel"
-                 matInput
-                 placeholder="Enter your address"
-                 required
-                 pattern="^[a-zA-Zא-ת0-9\s]+$"
-                 >
-                 <mat-error *ngIf="addressModel.getError('required')"> שדה חובה</mat-error>
-                 <mat-error *ngIf="addressModel.getError('pattern')">שם מכיל אותיות ומספרים בלבד </mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>הקלד שם משתמש</mat-label>
+        <input name="userName"
+               type="text" 
+               ngModel
+               #userNameModel="ngModel"
+               matInput
+               placeholder="שם"
+               required
+               pattern="^[a-zA-Zא-ת\s]+$" minlength="2" maxlength="30"
+               >
+        <mat-error *ngIf="userNameModel.getError('minlength')">שם חייב להכיל לפחות 2 תווים </mat-error>
+        <mat-error *ngIf="userNameModel.getError('maxlength')">שם יכול להכיל עד 30 תווים </mat-error>
+        <mat-error *ngIf="userNameModel.getError('required')">שדה חובה</mat-error>
+        <mat-error *ngIf="userNameModel.getError('pattern')">שם יכול להכיל אותיות בלבד</mat-error>
+      </mat-form-field>
     </div>
 
     <div class="example-container">
-        <mat-form-field>
-          <mat-label>הקש סיסמא</mat-label>
-          <input type="password" 
-                 name="password"
-                 matInput
-                 ngModel 
-                 #passwordModel="ngModel" 
-                 minlength="2" maxlength="30"
-                 [type]="hide ? 'password' : 'text'"
-                 pattern="(?=.*[a-zA-Z])(?=.*[0-9]).+$"
-                 >
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <mat-error *ngIf="passwordModel.getError('minlength')">סיסמה מכילה מינימום 2 תווים </mat-error>
-                    <mat-error *ngIf="passwordModel.getError('maxlength')">סיסמה מכילה מקסימום 30 תווים </mat-error>
-                    <mat-error *ngIf="passwordModel.getError('required')"> שדה חובה</mat-error>
-                    <mat-error *ngIf="passwordModel.getError('pattern')">סיסמה חייבת להכיל אות באנגלית ומספר
-                    </mat-error>
-        </mat-form-field>
-      </div>
-      <section>
-        <div>
-            <button mat-stroked-button  color="primary">הרשמה</button>
-          </div>
-      </section>
-      <div *ngIf="errorUser">
-        <mat-error>{{ errorUser }}</mat-error>
-      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>הקלד כתובת</mat-label>
+        <input name="address"
+               type="text" 
+               ngModel
+               #addressModel="ngModel"
+               matInput
+               placeholder="הכנס כתובת"
+               required
+               pattern="^[a-zA-Zא-ת0-9\s]+$"
+               >
+        <mat-error *ngIf="addressModel.getError('required')">שדה חובה</mat-error>
+        <mat-error *ngIf="addressModel.getError('pattern')">שם מכיל אותיות ומספרים בלבד</mat-error>
+      </mat-form-field>
     </div>
-    </form> 
+
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>הקלד סיסמה</mat-label>
+        <input type="password" 
+               name="password"
+               matInput
+               ngModel 
+               [(ngModel)]="state.password"
+               #passwordModel="ngModel" 
+               minlength="6" maxlength="30"
+               [type]="hide ? 'password' : 'text'"
+               pattern="(?=.*[a-zA-Z])(?=.*[0-9]).{6,}"
+               >
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'הצג/הסתר סיסמה'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="passwordModel.getError('minlength')">הסיסמה חייבת להכיל לפחות 6 תווים </mat-error>
+        <mat-error *ngIf="passwordModel.getError('maxlength')">הסיסמה יכולה להכיל עד 30 תווים </mat-error>
+        <mat-error *ngIf="passwordModel.getError('required')">שדה חובה</mat-error>
+        <mat-error *ngIf="passwordModel.getError('pattern')">הסיסמה חייבת להכיל לפחות אות באנגלית ומספר</mat-error>
+      </mat-form-field>
+    </div>
     
-    
+    <section>
+      <div class="register-button-container">
+        <button mat-raised-button color="primary">הרשמה</button>
+      </div>
+    </section>
+
+    <div *ngIf="errorUser">
+      <mat-error>{{ errorUser }}</mat-error>
+    </div>
+  </form>
+</div>

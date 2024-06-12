@@ -1,0 +1,121 @@
+.example-card {
+    max-width: 500px;
+    margin: auto; /* Align the card to the center of the page */
+    padding: 20px; /* Add padding around the card */
+    border-radius: 10px; /* Rounded corners for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to the card */
+    background-color: #f8f9fa; /* Background color for the card */
+    color: #333; /* Text color */
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+    height: 200px; /* Adjust the height of the image */
+    border-top-left-radius: 10px; /* Adjust the top border radius */
+    border-top-right-radius: 10px; /* Adjust the top border radius */
+  }
+  
+  .center-title {
+    text-align: center;
+    margin: 0;
+    padding: 8px 0;
+    font-size: 24px;
+    color: #1976d2; /* Title color */
+  }
+  
+  .card-section {
+    margin-bottom: 16px; /* Spacing between sections */
+  }
+  
+  .card-subtitle {
+    font-size: 18px;
+    color: #666; /* Subtitle color */
+  }
+  
+  .card-list {
+    list-style-type: none; /* Remove bullets from the list */
+    padding: 0;
+  }
+  
+  .card-list-item {
+    margin-bottom: 8px; /* Spacing between list items */
+  }
+  
+  .card-date {
+    font-style: italic;
+    color: #888; /* Date color */
+  }
+  
+  .card-author {
+    font-weight: bold;
+    color: #1976d2; /* Author color */
+  }
+
+  section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    max-width: 600px;
+  }
+  
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+  .example-card {
+    position: relative; /* כדי לאפשר למתכון להיות קרוב למעלה ולא להתנגש עם הכפתור */
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    padding-right: 16px; /* הזזה של הכפתור מעט לשמאל */
+  }
+  
+  .example-button-container {
+    margin-left: 8px; /* מרווח בין הכפתור לתוכן המתכון */
+  }
+  .example-card {
+    position: relative;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    padding-right: 16px;
+  }
+  
+  .example-button-container {
+    margin-left: 8px;
+  }
+
+.tooltip-text {
+  margin-right: 5px; /* רווח מימין */
+  vertical-align: middle; /* מיושר את הטקסט לאמצע */
+}
+  

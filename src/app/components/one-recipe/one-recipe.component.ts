@@ -29,6 +29,7 @@ export class OneRecipeComponent implements OnInit{
   
   }
   datiles(id:number|undefined){
+   console.log(id,"הי");
    this.id=id
    this.router.navigate(['/recipeDatiles',id])
   }

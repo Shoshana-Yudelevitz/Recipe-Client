@@ -1,11 +1,11 @@
 <section class="recipes-section">
-  <div class="select">
+  <div     class="select">
 
-    <div>
+    <div *ngIf="!isMyRecipes">
       <button mat-button color="primary" (click)="findAll()">בטל את כל הסינונים</button>
     </div>
 
-    <mat-form-field class="select2">
+    <mat-form-field *ngIf="!isMyRecipes" class="select2">
       <mat-label>סנן לפי קטגוריה</mat-label>
       <mat-select>
         @for (c of category; track c){
@@ -15,7 +15,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="select2">
+    <mat-form-field *ngIf="!isMyRecipes" class="select2">
       <mat-label>סנן לפי רמת קושי</mat-label>
       <mat-select>
         <mat-option [value]="1" (click)="findLevel(1)">1</mat-option>
@@ -26,7 +26,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="select2">
+    <mat-form-field *ngIf="!isMyRecipes"class="select2">
       <mat-label>סנן לפי זמן</mat-label>
       <mat-select>
         <mat-option [value]="15" (click)="findByTime(15)">עד רבע שעה</mat-option>
@@ -37,11 +37,22 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div class="recipes-grid">
+  <!-- <div class="recipes-grid" >
     @for(c of list; track c._id){
     <app-one-recipe [oneItem]="c"></app-one-recipe>
     }
+  </div> -->
+  <div class="recipes-grid">
+    <ng-container *ngIf="isMyRecipes; else allRecipes">
+      <ng-container *ngFor="let c of myRecipes; trackBy: trackByRecipe">
+        <app-one-recipe [oneItem]="c"></app-one-recipe>
+      </ng-container>
+    </ng-container>
+    <ng-template #allRecipes>
+      <ng-container *ngFor="let c of list; trackBy: trackByRecipe">
+        <app-one-recipe [oneItem]="c"></app-one-recipe>
+      </ng-container>
+    </ng-template>
   </div>
-
-  <mat-paginator [length]="150" [pageSize]="20" aria-label="Select page" (page)="onPageChange($event)"></mat-paginator>
+  <mat-paginator *ngIf="!itsMy" [length]="150" [pageSize]="10" aria-label="Select page" (page)="onPageChange($event)"></mat-paginator>
 </section>

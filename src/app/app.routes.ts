@@ -8,6 +8,7 @@ import { OneRecipeComponent } from './components/one-recipe/one-recipe.component
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RecipeDatilesComponent } from './components/recipe-datiles/recipe-datiles.component';
+
 export const routes: Routes = [
     {path:'home',component:HomeComponent},
     {path:'login',component:LoginComponent},
@@ -15,13 +16,14 @@ export const routes: Routes = [
     {path:'all-recipe',component:AllRecipeComponent},
     {path:'recipe-form',component:RecipeFormComponent},
     {path:'one-recipe',component:OneRecipeComponent},
+    {path:'my-recipes',component:AllRecipeComponent},
     {path:'recipeDatiles/:id',component:RecipeDatilesComponent},
-    {path:'', redirectTo: '/login', pathMatch: 'full' },
-    {path:'**', redirectTo: '/login' }
-    // {path:'recipe-form',component:RecipeFormComponent},
-];
-@NgModule({
+    {path:'', redirectTo: '/home', pathMatch: 'full' },
+    {path:'**', redirectTo: '/login'},
+  ]
+
+    @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
   })
-  export class AppRoutingModule { }
+   export class AppRoutingModule { }

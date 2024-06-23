@@ -1,7 +1,7 @@
-
+<!-- 
 <mat-card class="example-card">
-    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-    <img mat-card-image *ngIf="one.image" src="one.image" alt="Photo of a Shiba Inu">
+ 
+    <img mat-card-image *ngIf="one.image" src={{one.image}} alt="Photo of a Shiba Inu" class="recipe-image">
     <mat-card-header>
         <mat-card-title>{{one.recipeName}}</mat-card-title>
        
@@ -17,4 +17,17 @@
     
     </mat-card-actions>
   </mat-card>
-  
+   -->
+   <mat-card class="example-card">
+    <img mat-card-image *ngIf="one.image" [src]="one.image" alt="Photo of a Shiba Inu" class="recipe-image">
+    <mat-card-header>
+        <mat-card-title><span>{{one.recipeName}}</span></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p></p>
+    </mat-card-content>
+    
+    <mat-card-actions *ngIf="isLoggedIn">
+        <button mat-button (click)="datiles(one._id)">...עוד</button>
+    </mat-card-actions>
+</mat-card>

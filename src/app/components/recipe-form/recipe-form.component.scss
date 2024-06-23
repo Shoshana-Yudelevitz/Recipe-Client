@@ -57,3 +57,62 @@ body {
 }
 
 
+body {
+  direction: rtl;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+}
+
+.example-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 600px;
+  width: 100%;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.example-full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.example-form mat-form-field {
+  width: 100%;
+}
+
+.example-form button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.example-form .example-section {
+  margin: 12px 0;
+}
+
+.example-form .example-margin {
+  margin: 0 12px;
+}
+
+.example-form input[type="text"]{}
+.example-form input[type="password"]{}
+::placeholder {
+  direction: rtl;
+  text-align: right;
+}
+mat-error {
+  text-align: right; /* מיישר את הטקסט של mat-error לימין */
+}
+mat-label{
+  text-align: right; /* מיישר את הטקסט של mat-error לימין */
+}
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+  direction: rtl; /* מוסיף כיוון כתיבה מימין לשמאל */
+  text-align: right; /* מיישר את הטקסט לימין */
+}

@@ -12,9 +12,9 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>תיאור המתכון</mat-label>
-    <textarea pattern="^[a-zA-Zא-ת\s]+$" minlength="5" maxlength="100" matInput placeholder="תיאור" type="text" formControlName="descripition"></textarea>
+    <textarea pattern="^[a-zA-Zא-ת\s]+$" minlength="5" maxlength="1000" matInput placeholder="תיאור" type="text" formControlName="descripition"></textarea>
     <mat-error *ngIf="recipeForm.get('descripition')?.hasError('minlength')">תאור חייב להכיל לפחות 5 תווים </mat-error>
-    <mat-error *ngIf="recipeForm.get('descripition')?.hasError('maxlength')">תאור יכול להכיל עד 100 תווים </mat-error>
+    <mat-error *ngIf="recipeForm.get('descripition')?.hasError('maxlength')">תאור יכול להכיל עד 1000 תווים </mat-error>
     <mat-error *ngIf="recipeForm.get('descripition')?.hasError('required')">שדה חובה</mat-error>
     <mat-error *ngIf="recipeForm.get('descripition')?.hasError('pattern')">תאור יכול להכיל אותיות בלבד</mat-error>
   </mat-form-field>

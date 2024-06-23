@@ -73,11 +73,14 @@ signIn(form: NgForm){
       console.log(data);
       console.log("התחברת בהצלחה:)");
       this.userService.token = data.token
+      console.log(this.userService,"this.userService.token");
+      
+      this.userService.userName = data.user.userName;
       if (this.userService.token) {
-        this.router.navigate(['/all-recipe']);
+        this.router.navigate(['/all-recipe'],);
       }
     }
-      ,
+    ,
       (error) => {
         this.errorUser = "שם משתמש או סיסמה לא חוקיים. אנא נסה שוב.";
       }

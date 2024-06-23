@@ -1,0 +1,76 @@
+/* סגנון גופן */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    direction: rtl; /* הוספת כיוון טקסט מימין לשמאל */
+}
+
+/* סגנון כותרת ראשית */
+header {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #007bff;
+    color: white;
+}
+
+/* סגנון כרטיס מתכון */
+.featured-recipes {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 900px;
+}
+
+.featured-recipes h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.recipe-card {
+    display: flex;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+}
+
+.recipe-card img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+}
+
+.recipe-info {
+    padding: 20px;
+}
+
+.recipe-info h3 {
+    margin-top: 0;
+}
+
+.recipe-info p {
+    margin-bottom: 10px;
+}
+
+.recipe-info a {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.recipe-info a:hover {
+    background-color: #007bff;
+}
+
+/* סגנון כותרת תחתונה */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}

@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './shared/services/user.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
@@ -17,16 +17,20 @@ import {MatButtonModule} from '@angular/material/button';
     CommonModule,
     HttpClientModule,
     RouterModule,
-    MatTabsModule,MatButtonModule, MatDividerModule, MatIconModule
+    MatTabsModule, MatButtonModule, MatDividerModule, MatIconModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'recipe';
-
-  constructor(private router: Router, public userService: UserService) {}
-
+  userName: string|undefined 
+  selectedTabIndex = 2;
+  constructor(private router: Router, public userService: UserService) { }
+  ngOnInit() {
+  this.selectedTabIndex=2;
+ 
+  }
   onTabChange(index: number) {
     switch (index) {
       case 0:
@@ -39,35 +43,35 @@ export class AppComponent {
         this.router.navigate(['/home']);
         break;
       case 3:
-        this.router.navigate(['/all-recipe']);
+        this.router.navigate(['/all-recipe'], { queryParams: { myRecipes: 'false' } });
         break;
       case 4:
-        if (this.isUserLoggedIn()) {
-          this.router.navigate(['/recipe-form']);
-        }
+        this.router.navigate(['/recipe-form']);
         break;
       case 5:
-        if (this.isUserLoggedIn()) {
-          this.router.navigate(['/my-recipes']);
-        }
+        this.router.navigate(['/all-recipe'], { queryParams: { myRecipes: 'true' } });
         break;
     }
   }
 
   isUserLoggedIn(): boolean {
-   
     return !!this.userService.token;
   }
 
   onActivate(component: any) {
-    // Perform any necessary actions when components are activated
+    if (component) {
+      this.userName = this.userService.userName; // שימוש בשם המשתמש משירות המשתמש
+      this.selectedTabIndex=3;
+    }
+    
   }
 
-  
+
   logout() {
     if (this.isUserLoggedIn()) {
-    
-    this.userService.logout();
-    this.router.navigate(['/login']);}
+      this.userService.logout();
+   
+      this.router.navigate(['/login']);
+    }
   }
 }

@@ -17,11 +17,16 @@ export class RecipeService {
   public get token(): string | null {
     if(localStorage)
     return localStorage.getItem('mytoken');
-  return null;
+    return null;
   }
 
-  getAllRecipe(page: number = 1, perPage: number = 20): Observable<Recipe[]> {
-    const url = `${this.baseUrl}?page=${page}&perPage=${perPage}`;
+  
+  // getAllRecipe(page: number = 1, perPage: number = 10,search=''): Observable<Recipe[]> {
+  //   const url = `${this.baseUrl}?page=${page}&perPage=${perPage}&search=${search}`;
+  //   return this.http.get<Recipe[]>(url);
+  // }
+  getAllRecipe(page: number = 1, perPage: number = 10, search: string = '', isFilter: boolean = false): Observable<Recipe[]> {
+    const url = `${this.baseUrl}?page=${page}&perPage=${perPage}&search=${search}&isFilter=${isFilter}`;
     return this.http.get<Recipe[]>(url);
   }
   getDetailsById(id:number|undefined){
@@ -46,14 +51,16 @@ export class RecipeService {
         'Authorization': `Bearer ${this.token}`
       })
     };
-    
     return this.http.delete<Recipe>(`${this.baseUrl}/${id}`,httpOptions);
   }
+
   getDetailsByTime(time:number){
     return this.http.get<Recipe[]>(`${this.baseUrl}/getDetailsByTime/${time}`);
   }
-  getDetailsByUser(u: number){
-    return this.http.get<Recipe[]>(`${this.baseUrl}/getDetailsByUser/${u}`);
+
+  getDetailsByUser(id: number){
+    console.log("fff");
+    return this.http.get<Recipe[]>(`${this.baseUrl}/getDetailsByUser/${id}`);
   }
   
   

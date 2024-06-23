@@ -1,3 +1,105 @@
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+/* Recipe Styles */
+.recipes-section {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.recipe-container {
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 100%;
+  height: 350px; /* התאמה לגובה הרצוי */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.recipe-container:hover {
+  transform: translateY(-5px);
+}
+
+.recipe-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px 0 10px;
+}
+
+.recipe-description {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.recipe-category {
+  font-style: italic;
+  color: #888;
+}
+
+.recipe-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipe-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.recipe-button:hover {
+  background-color: #0056b3;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+  direction: rtl; /* מוסיף כיוון כתיבה מימין לשמאל */
+  text-align: right; /* מיישר את הטקסט לימין */
+}
+
+.mat-label {
+  direction: rtl;
+}
+
+.mat-option {
+  direction: rtl;
+}
+
+/* Example Card Styles */
 .example-card {
   max-width: 400px;
   margin: 0 auto;
@@ -8,7 +110,7 @@
 }
 
 .mat-card-header {
-  background-color: #007bff;
+  background-color: #45a049;
   color: #fff;
 }
 
@@ -20,7 +122,7 @@
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
-  text-align: center; /* מירכוז הטקסט במרכז הכרטיס */
+  text-align: right; /* מירכוז הטקסט במרכז הכרטיס */
 }
 
 .mat-card-actions {
@@ -29,7 +131,7 @@
 }
 
 .mat-card-actions button {
-  background-color: #007bff;
+  background-color: #45a049;
   color: #fff;
   font-weight: bold;
   border: none;
@@ -40,6 +142,55 @@
 }
 
 .mat-card-actions button:hover {
-  background-color: #0056b3;
+  background-color: #45a049;
 }
+
+/* Recipe Image Styles */
+.recipe-image {
+  width: 100%; /* התאמה לרוחב ההורה */
+  height: 200px; /* התאמה לגובה הרצוי */
+  object-fit: cover; /* לשמור על היחס המקורי של התמונה ולחתוך במידת הצורך */
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .recipes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .recipes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+.select {
+  text-align: right;
+}
+
+.select2 {
+  margin-right: 10px;
+}
+// mat-card-title, mat-card-title * {
+//   width: 100%;
+//   direction: rtl; /* מוסיף כיוון כתיבה מימין לשמאל */
+//   text-align: right; /* מיישר את הטקסט לימין */
+// }
+
+.mat-card-header {
+  direction: rtl; /* מוסיף כיוון כתיבה מימין לשמאל */
+}
+
+.mat-card-title {
+  text-align: right; /* מיישר את הטקסט לימין */
+}
+
+.mat-card-title span {
+  width: 100% !important;
+  text-align: right !important;
+  display: block !important;
+}
+
+
 

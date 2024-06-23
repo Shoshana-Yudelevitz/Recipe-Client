@@ -1,17 +1,25 @@
-
 <div class="sticky-navbar">
- 
-  <mat-tab-group animationDuration="1000ms" (selectedIndexChange)="onTabChange($event)">
-    <ng-container *ngIf="isUserLoggedIn()">
+
+  <mat-tab-group  animationDuration="1000ms" [selectedIndex]="selectedTabIndex" (selectedIndexChange)="onTabChange($event)">
+    <ng-container  *ngIf="isUserLoggedIn()">
+
       <mat-tab label="התחברות"></mat-tab>
       <mat-tab label="הרשמה"></mat-tab>
       <mat-tab label="הבית"></mat-tab>
       <mat-tab label="כל המתכונים"></mat-tab>
       <mat-tab label="הוספת מתכון"></mat-tab>
       <mat-tab label="המתכונים שלי"></mat-tab>
-      <mat-tab label="יציאה" >
+      <mat-tab label="יציאה">
       <button mat-button color="primary" (click)="logout()">אתה בטוח רוצה לצאת? אם כן הקש כאן!</button>
-    </mat-tab>
+      </mat-tab>
+   
+<mat-tab>
+  <ng-template  mat-tab-label>
+      <span >{{userName}}</span>
+      <mat-icon >account_circle</mat-icon> <!-- איקון פרופיל -->
+      
+  </ng-template>
+</mat-tab>
     </ng-container>
     <ng-container *ngIf="!isUserLoggedIn()">
       <mat-tab label="התחברות"></mat-tab>
@@ -20,5 +28,5 @@
       <mat-tab label="כל המתכונים"></mat-tab>
     </ng-container>
   </mat-tab-group>
-
-<router-outlet (activate)="onActivate($event)"></router-outlet>
+  
+  <router-outlet class="progress-bar" (activate)="onActivate($event)"></router-outlet>

@@ -5,7 +5,7 @@
     justify-content: center;
     width: 100%;
     max-width: 400px;
-    margin: 100px auto 50px auto;
+    margin: 50px auto 50px auto;
     padding: 30px;
     background-color: #f5f5f5;
     border-radius: 10px;
@@ -26,4 +26,19 @@
     display: flex;
     justify-content: center;
   }
-  
+  ::placeholder {
+    direction: rtl;
+    text-align: right;
+  }
+  mat-error {
+    text-align: right; /* מיישר את הטקסט של mat-error לימין */
+  }
+  mat-label{
+    text-align: right; /* מיישר את הטקסט של mat-error לימין */
+  }
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+    direction: rtl; /* מוסיף כיוון כתיבה מימין לשמאל */
+    text-align: right; /* מיישר את הטקסט לימין */
+  }

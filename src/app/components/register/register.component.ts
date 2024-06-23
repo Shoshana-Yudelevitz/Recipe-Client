@@ -19,11 +19,10 @@ import { User } from '../../shared/models/user';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
+
 export class RegisterComponent implements OnInit{
 
   private userService = inject(UserService)
-  // @Input()
-  // userData: { email: string; password: string } | null = null;
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('',[
     Validators.required,
@@ -63,18 +62,24 @@ export class RegisterComponent implements OnInit{
 
   }
   enter(form: NgForm) {
+    console.log("bjhbjkhb");
+    
     this.userService.signUp({ userName: form.value.userName, password: form.value.password, email: form.value.email, address: form.value.address, role: 'user' }).
       subscribe({
         next: (data) => {
           console.log(data);
           this.userService.token = data.token
+          this.userService.userName=data.user.userName
           this.router.navigate(['/all-recipe']);
         },
         error: (err) => {
           console.error('SignUp error', err);
-          this.errorMessage = 'המשתמש כבר קיים במערכת ';
+          // Handle server-side error and display appropriate message
+          if (err.error && err.error.message === 'User already exists') {
+            this.errorUser = 'המשתמש כבר קיים במערכת'; // Set user-friendly error message
+          } else {
+            this.errorUser = 'אירעה שגיאה במהלך הרישום. אנא נסה שוב.'; // Generic error message
+          }
         }
-      },
-      )
-  }
-}
+      });
+    }}

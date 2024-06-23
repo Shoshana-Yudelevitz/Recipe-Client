@@ -38,20 +38,23 @@ export class RecipeDatilesComponent implements OnInit {
   isOwner = false;
   foundRecipe: Recipe = {}
   ngOnInit():void {
+    console.log(this.id);
+   
     this.recipeService.getDetailsById(this.id).subscribe((recipes) => {
+     if(recipes){
       this.user = recipes.userRecipe
-     
       this.foundRecipe = recipes
-
+      
       this.auth.isRecipeOwner(this.userService.token, this.user[0]?._id).subscribe((isOwner: boolean) => {
         this.isOwner = isOwner;
-        
-    });
-    });
-    
- 
-
-
+        console.log(isOwner,"isOwner");
+    }
+  );
+}
+  
+    }
+     
+  );
   }
 
   

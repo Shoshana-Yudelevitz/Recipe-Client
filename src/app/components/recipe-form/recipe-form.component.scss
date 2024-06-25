@@ -98,8 +98,12 @@ body {
   margin: 0 12px;
 }
 
-.example-form input[type="text"]{}
-.example-form input[type="password"]{}
+.example-form input[type="text"]{
+  text-align: center;
+}
+.example-form input[type="password"]{
+  text-align: center;
+}
 
 ::placeholder {
   direction: rtl;

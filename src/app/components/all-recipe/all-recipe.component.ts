@@ -45,14 +45,15 @@ export class AllRecipeComponent {
   selectedCategory: string | null = null;
   selectedTime: number | null = null;
   selectedLevel: number | null = null;
-  itsMy: boolean = false;
+ 
 
   ngOnInit(): void {
+
   
     // זיהוי מהיכן הגיע המשתמש (מ-Case 3 או Case 5)
     this.route.queryParams.subscribe(params => {
       this.isMyRecipes = params['myRecipes'] === 'true';
-      this.itsMy=true
+   
     });
 
     this.recipeService.getAllRecipe(1, 1000000, '', true).subscribe((data) => {
@@ -83,7 +84,7 @@ export class AllRecipeComponent {
     });
   }
   getRecipes(page: number, pageSize: number): void {
-    this.itsMy=false
+ 
     this.recipeService.getAllRecipe(page, pageSize).subscribe((data) => {
       this.list = data;
       console.log(data, "כל העוגות");
@@ -91,7 +92,8 @@ export class AllRecipeComponent {
 
   }
   findAll() {
-    this.itsMy=false
+
+
     this.recipeService.getAllRecipe().subscribe((data) => {
       this.list = data as any[];
       console.log(data, "כל העוגות");
@@ -106,7 +108,7 @@ export class AllRecipeComponent {
     }
   }
    onPageChange(event: any): void {
-    this.currentPage = event.pageIndex + 1; // הוספת 1 מכיוון ש־MatPaginator מתחיל ממספר 0
+    this.currentPage = event.pageIndex + 1; 
     this.getRecipes(this.currentPage, this.pageSize);
   }
 
@@ -130,7 +132,7 @@ export class AllRecipeComponent {
   }
   
   applyFilters(): void {
-    this.itsMy=true
+
     this.recipeService.getAllRecipe(1, 1000000, '', true).subscribe((data) => {
       this.list = data.filter(recipe => {
         const matchesCategory = this.selectedCategory ? recipe.categories?.some(category => category.categoryName === this.selectedCategory) : true;

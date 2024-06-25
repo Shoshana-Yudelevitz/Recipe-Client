@@ -118,4 +118,12 @@
   margin-right: 5px; /* רווח מימין */
   vertical-align: middle; /* מיושר את הטקסט לאמצע */
 }
-  
+// .card-list-item {
+//   display: flex;
+//   align-items: center;
+// }
+
+.card-list-item mat-icon {
+  margin-right: 8px; /* כדי ליצור ריווח עם הטקסט */
+}
+ 

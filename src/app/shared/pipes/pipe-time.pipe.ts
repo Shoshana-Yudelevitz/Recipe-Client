@@ -14,7 +14,22 @@ export class PipeTimePipe implements PipeTransform {
        if(hours===0){
         return `זמן הכנה: ${minutes} דקות`;
        }
-
+       if(minutes===0)
+        {
+          if(hours===1){
+            return `זמן הכנה: שעה `
+          }
+          if(hours===2){
+            return `זמן הכנה: שעתיים `
+          }
+          return `זמן הכנה: ${hours} שעות`
+        }
+        if(hours===1){
+          return `זמן הכנה: שעה ו ${minutes} דקות`
+        }
+        if(hours===2){
+          return `זמן הכנה: שעתיים ו ${minutes} דקות`
+        }
       return `זמן הכנה: ${hours} שעות ו-${minutes} דקות`;
   
   }

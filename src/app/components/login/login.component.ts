@@ -8,9 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserService } from '../../shared/services/user.service';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { User } from '../../shared/models/user';
+
 
 
 @Component({
@@ -69,7 +68,7 @@ signIn(form: NgForm){
   this.userService
     .signIn({ password: form.value.password, email: form.value.email }).
     subscribe((data) => {
-      // localStorage.setItem('myToken', data.token);
+     
       console.log(data);
       console.log("התחברת בהצלחה:)");
       this.userService.token = data.token
@@ -82,7 +81,7 @@ signIn(form: NgForm){
     }
     ,
       (error) => {
-        this.errorUser = "שם משתמש או סיסמה לא חוקיים. אנא נסה שוב.";
+        this.errorUser = "!אינך רשום במערכת או שסיסמתך שגויה, אנא נסה שוב" ;
       }
     )
 }

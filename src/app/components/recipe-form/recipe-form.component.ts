@@ -70,7 +70,7 @@ export class RecipeFormComponent implements OnInit {
     this.recipeForm = fb.group({
       recipeName: fb.control('', [Validators.required, Validators.maxLength(20), Validators.minLength(3), Validators.pattern('^[a-zA-Zא-ת\\s,\\.\\-\\n]*$')]),
       descripition: fb.control('', [Validators.required, Validators.minLength(5), Validators.maxLength(100), Validators.pattern('^[a-zA-Zא-ת\\s,\\.\\-\\n]*$')]),
-      categories: fb.control('', Validators.required),
+      categories: fb.control(''),
       newCategories: fb.control('',[Validators.pattern('^[a-zA-Zא-ת\\s,\\.\\-\\n]*$'),Validators.minLength(2), Validators.maxLength(10), ]),
       time: fb.control('', [Validators.required, Validators.pattern('^[0-9]*$')]),
       level: fb.control(0, Validators.required),
@@ -96,7 +96,7 @@ export class RecipeFormComponent implements OnInit {
       this.fb.group({
         descripitionOfLayer: this.fb.control('', [Validators.required, Validators.minLength(2), Validators.maxLength(70), Validators.pattern("^[a-zA-Zא-ת\\s]+$")]),
         ingredients: this.fb.array([
-          this.fb.control('', Validators.required),
+          this.fb.control('',[Validators.required, Validators.pattern("^[a-zA-Zא-ת0-9\\s,.'\\-]+$")] ),
         ]),
       })
     );
@@ -121,14 +121,20 @@ export class RecipeFormComponent implements OnInit {
     });
 
     if (this.recipeForm.value.newCategories && this.recipeForm.value.categories) {
+      console.log("// אם קיימים גם קטגוריות חדשות וגם קטגוריות קיימות בטופס");
+      
       this.recipeForm.value.categories.push(this.recipeForm.value.newCategories);
     } else {
+
       if (!this.recipeForm.value.categories) {
+        console.log(" אם אין קטגוריות קיימות בטופס");
         this.recipeForm.value.categories = [this.recipeForm.value.newCategories];
       }
     }
 
     this.recipeForm.value.categories.forEach((item: any) => {
+     
+      
       let obj = { categoryName: item };
       this.categoryArr.push(obj);
     });

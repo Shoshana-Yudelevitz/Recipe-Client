@@ -8,8 +8,11 @@
              #emailModel="ngModel"
              matInput
              placeholder="email@example.com"
-             required>
-      <mat-error *ngIf="emailModel.invalid">אימייל לא תקין</mat-error>
+             required
+             pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)$">
+             <mat-error *ngIf="emailModel.getError('pattern')">מייל לא תקין</mat-error>
+      <mat-error *ngIf="emailModel.getError('required')">שדה חובה</mat-error>
+     
     </mat-form-field>
 
     <mat-form-field appearance="fill">

@@ -37,11 +37,6 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <!-- <div class="recipes-grid" >
-    @for(c of list; track c._id){
-    <app-one-recipe [oneItem]="c"></app-one-recipe>
-    }
-  </div> -->
   <div class="recipes-grid">
     <ng-container *ngIf="isMyRecipes; else allRecipes">
       <ng-container *ngFor="let c of myRecipes; trackBy: trackByRecipe">
@@ -54,5 +49,5 @@
       </ng-container>
     </ng-template>
   </div>
-  <mat-paginator *ngIf="!itsMy" [length]="150" [pageSize]="10" aria-label="Select page" (page)="onPageChange($event)"></mat-paginator>
+  <mat-paginator *ngIf="!isMyRecipes" [length]="150" [pageSize]="10" aria-label="Select page" (page)="onPageChange($event)"></mat-paginator>
 </section>

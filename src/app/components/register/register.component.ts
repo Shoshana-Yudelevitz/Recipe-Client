@@ -74,11 +74,11 @@ export class RegisterComponent implements OnInit{
         },
         error: (err) => {
           console.error('SignUp error', err);
-          // Handle server-side error and display appropriate message
+          
           if (err.error && err.error.message === 'User already exists') {
-            this.errorUser = 'המשתמש כבר קיים במערכת'; // Set user-friendly error message
+            this.errorUser = 'המשתמש כבר קיים במערכת';
           } else {
-            this.errorUser = 'אירעה שגיאה במהלך הרישום. אנא נסה שוב.'; // Generic error message
+            this.errorUser = 'אירעה שגיאה במהלך הרישום. אנא נסה שוב.'; 
           }
         }
       });

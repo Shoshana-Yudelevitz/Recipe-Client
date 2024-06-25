@@ -29,14 +29,14 @@ button {
   text-align: right;
 }
 mat-error {
-  text-align: right; /* מיישר את הטקסט של mat-error לימין */
+  text-align: right; 
 }
 mat-label{
-  text-align: right; /* מיישר את הטקסט של mat-error לימין */
+  text-align: right; 
 }
 mat-form-field {
   width: 100%;
   margin-bottom: 20px;
-  direction: rtl; /* מוסיף כיוון כתיבה מימין לשמאל */
-  text-align: right; /* מיישר את הטקסט לימין */
+  direction: rtl; 
+  text-align: right; 
 }
